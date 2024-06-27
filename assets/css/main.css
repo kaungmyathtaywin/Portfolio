@@ -1443,3 +1443,8 @@ section,
 .large-icon {
   font-size: 25px;
 }
+
+.contact .info-wrap {
+  box-shadow: 0px 0px 20px color-mix(in srgb, var(--default-color), transparent 90%);
+  padding: 30px;
+}
