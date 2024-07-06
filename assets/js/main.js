@@ -226,4 +226,60 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * Email Form Submission
+   */
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('.email-form');
+    const loadingElement = form.querySelector('.loading');
+    const errorMessageElement = form.querySelector('.error-message');
+    const sentMessageElement = form.querySelector('.sent-message');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent the default form submission
+
+      // Show loading
+      loadingElement.style.display = 'block';
+      errorMessageElement.style.display = 'none';
+      sentMessageElement.style.display = 'none';
+
+      // Prepare form data
+      const formData = new FormData(form);
+      const jsonData = {};
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      // Send form data
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(data => {
+          // Hide loading
+          loadingElement.style.display = 'none';
+
+          // Show success message
+          sentMessageElement.style.display = 'block';
+        })
+        .catch(error => {
+          // Hide loading
+          loadingElement.style.display = 'none';
+
+          // Show error message
+          errorMessageElement.style.display = 'block';
+          errorMessageElement.textContent = 'Error sending email: ' + error.message;
+        });
+    });
+  });
+
 })();
