@@ -30,6 +30,17 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- Google reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfcUeMqAAAAAI86XfCIo4UAlIBEBh4FjM2M_OGP"></script>
+
+  <script>
+    grecaptcha.ready(function () {
+    grecaptcha.execute('6LfcUeMqAAAAAI86XfCIo4UAlIBEBh4FjM2M_OGP', { action: 'submit' }).then(function (token) {
+      document.getElementById('g-recaptcha-response').value = token;
+    });
+  });
+
+  </script>
   <!-- =======================================================
   * Template Name: MyResume
   * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
@@ -458,7 +469,7 @@
       <div class="container" data-aos="fade" data-aos-delay="100">
 
         <div class="row gy-4">
-
+          <div class="col-lg-4"></div>
           <div class="col-lg-4">
             <div class="info-wrap">
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
@@ -487,7 +498,7 @@
             </div>
           </div>
 
-          <div class="col-lg-8">
+          <!-- <div class="col-lg-8"> 
             <form action="https://email-server-ten.vercel.app/email" method="post" class="email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
@@ -506,6 +517,9 @@
                 <div class="col-md-12">
                   <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
                 </div>
+                
+               
+                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
@@ -517,7 +531,7 @@
 
               </div>
             </form>
-          </div><!-- End Contact Form -->
+          </div>   -->   <!-- End Contact Form -->
 
         </div>
 
